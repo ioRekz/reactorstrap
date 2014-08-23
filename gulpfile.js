@@ -9,7 +9,10 @@ var gulp = require('gulp'),
     watchify = require('watchify'),
     notify = require('gulp-notify'),
     reactify = require('reactify'),
-    streamify = require('gulp-streamify')
+    streamify = require('gulp-streamify'),
+    es6ify = require('es6ify'),
+    es6transpiler = require('gulp-es6-transpiler'),
+    debowerify    = require('debowerify'),
     gulpif = require('gulp-if');
 
 var env = process.env.NODE_ENV || "dev";
@@ -29,8 +32,8 @@ function handleError(task) {
 }
 
 function scripts(watch) {
+  console.log('scripts')
   var bundler, rebundle;
-  console.log(__dirname)
   bundler = browserify({
     basedir: __dirname,
     entries: './js/app.jsx',
@@ -44,12 +47,12 @@ function scripts(watch) {
   }
 
   bundler.transform(reactify);
+  //bundler.transform(debowerify);
 
   rebundle = function() {
     var stream = bundler.bundle();
     stream.on('error', handleError('Browserify'));
     stream = stream.pipe(source('app.js'));
-    console.log("rebundle")
     return stream
         .pipe(whenProd(streamify(uglify())))
         .pipe(gulpif(isProd(), gulp.dest('./dist/build/js'), gulp.dest('./build/js')))

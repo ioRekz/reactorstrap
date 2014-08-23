@@ -12,6 +12,9 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "browserify": "^5.9.1",
+    "debowerify": "^0.8.1",
+    "es6ify": "^1.3.0",
     "gulp": "~3.8.7",
     "gulp-if": "~1.2.4",
     "gulp-notify": "^1.4.2",
@@ -21,13 +24,18 @@
     "gulp-uglify": "~0.3.1",
     "gulp-util": "^3.0.0",
     "gulp-webserver": "^0.6.0",
-    "browserify": "^5.9.1",
     "reactify": "^0.14.0",
-    "watchify": "^1.0.0",
-    "vinyl-source-stream": "^0.1.1"
+    "vinyl-source-stream": "^0.1.1",
+    "watchify": "^1.0.0"
   },
   "dependencies": {
-    "superagent": "~0.18.2",
-    "react": "^0.11.1"
+    "fuzzy": "^0.1.0",
+    "immutable": "^2.0.10",
+    "lodash": "^2.4.1",
+    "mori": "^0.2.9",
+    "react-bootstrap": "0.11.1",
+    "react-treeview": "^0.3.5",
+    "react-typeahead": "git://github.com/fmoo/react-typeahead",
+    "superagent": "~0.18.2"
   }
 }
