@@ -2,10 +2,10 @@ var React = require('react')
 
 var ContentEditable = React.createClass({
     getInitialState: function() {
-        return {value: this.props.children}
+        return {value: this.props.children};
     },
     render: function(){
-        var self = this
+        var self = this;
         return <span
             onInput={this.emitChange}
             contentEditable
@@ -28,4 +28,4 @@ var ContentEditable = React.createClass({
     }
 });
 
-module.exports = ContentEditable
+module.exports = ContentEditable;

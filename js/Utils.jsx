@@ -3,8 +3,8 @@ var React = require('react'),
 
 var Reveal = React.createClass({
   propTypes: {
-    show    : React.PropTypes.any,
-    first   : React.PropTypes.any
+    show    : React.PropTypes.any, //Reveal the only child when show is true
+    first   : React.PropTypes.any  //Reveal the first child when first is true else the second
   },
   render: function() {
     if(this.props.show != undefined) {
@@ -13,10 +13,10 @@ var Reveal = React.createClass({
              : null
     }
     if(this.props.first != undefined) {
-      return this.props.first ? this.props.children[0] : this.props.children[1]
+      return this.props.first ? this.props.children[0] : this.props.children[1];
     }
-    return null
+    return null;
   }
 })
 
-module.exports = {Reveal: Reveal}
+module.exports = {Reveal: Reveal};

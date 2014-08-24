@@ -8,6 +8,23 @@ body {
   margin-top: 20px;
 }
 
+
+.remove-wrapper {
+  display: inline-block;
+  width: 85%;
+}
+
+.remove-wrapper:hover .remove-tree {
+  display: inline-block !important;
+}
+
+.remove-tree {
+  font-size: 10px;
+  position: relative;
+  right: -20px;
+  display: none !important;
+}
+
 .show-grid{margin-bottom:15px}.show-grid [class^=col-]{padding-top:10px;padding-bottom:10px;background-color:#eee;background-color:rgba(86,61,124,.15);border:1px solid #ddd;border:1px solid rgba(86,61,124,.2)}
 
 .placeholder {

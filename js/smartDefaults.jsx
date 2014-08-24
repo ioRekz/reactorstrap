@@ -259,50 +259,50 @@ var smarties = [
     <MenuItem key="4">Separated link</MenuItem>
   </SplitButton>
 
-]
+];
 
 var globals = {
   bsSize: 'medium'
-}
+};
 
 var defaultProps = function(elem) {
-  if(!elem || !elem.type.propTypes) return {}
+  if(!elem || !elem.type.propTypes) return {};
   return assign(Object.keys(elem.type.propTypes).reduce(function(total, prop) {
-    var current = {}
-    current[prop] = elem.type.defaultProps ? elem.type.defaultProps[prop] : undefined
-    return _.assign(total, current)
+    var current = {};
+    current[prop] = elem.type.defaultProps ? elem.type.defaultProps[prop] : undefined;
+    return _.assign(total, current);
   }, {}), globals)
-}
+};
 
 
 var findElem = function(name) {
-  return Bootstrap[name] || DOM[name]
-}
+  return Bootstrap[name] || DOM[name];
+};
 
 var parseDOM = function(elem, name) {
-  if(typeof elem == 'string') return elem
-  var child = elem._store.props.children
+  if(typeof elem == 'string') return elem;
+  var child = elem._store.props.children;
   var children = child instanceof Array ? child.map(function(c) {return parseDOM(c)})
-                                        : child ? [parseDOM(child)] : []
-  var name = name || elem.type.displayName
-  var props = Immutable.Map(elem._store.props).delete('children').toJS()
-  return {name: name, children: children, props: Immutable.Map(defaultProps(elem)).merge(props).toJS(), elem: findElem(name)}
+                                        : child ? [parseDOM(child)] : [];
+  var name = name || elem.type.displayName;
+  var props = Immutable.Map(elem._store.props).delete('children').toJS();
+  return {name: name, children: children, props: Immutable.Map(defaultProps(elem)).merge(props).toJS(), elem: findElem(name)};
 }
 
 var smartDefaults = {
   smartChildren: function(k) {
-    if(!smartChildren[k]) return []
-    return parseDOM(smartChildren[k]).children
+    if(!smartChildren[k]) return [];
+    return parseDOM(smartChildren[k]).children;
   },
   smartProps: function(k) {
-    if(!smartChildren[k]) return {}
-    return parseDOM(smartChildren[k]).props
+    if(!smartChildren[k]) return {};
+    return parseDOM(smartChildren[k]).props;
   },
   smartAll: function(k) {
     var elem = Immutable.Sequence(smarties).find(function(e) {
-      return e.name == k || e.type.displayName == k
-    })
-    return elem ? parseDOM(elem.elem || elem, elem.name) : undefined
+      return e.name == k || e.type.displayName == k;
+    });
+    return elem ? parseDOM(elem.elem || elem, elem.name) : undefined;
   },
   starter: parseDOM(<Jumbotron>
                       <h1>Hello, world!</h1>
@@ -311,4 +311,4 @@ var smartDefaults = {
                     </Jumbotron>)
 }
 
-module.exports = smartDefaults
+module.exports = smartDefaults;

@@ -5,13 +5,13 @@ var assign = function(src, tgt) {
 }
 
 var assoc = function(src, k, v) {
-  var dumb = {}
-  dumb[k] = v
-  return assign(src, dumb)
+  var dumb = {};
+  dumb[k] = v;
+  return assign(src, dumb);
 }
 
 var identity = function(t) {
-  return function(x) { return t }
+  return function(x) { return t };
 }
 
-module.exports = {assign: assign, assoc: assoc, identity: identity}
+module.exports = {assign: assign, assoc: assoc, identity: identity};

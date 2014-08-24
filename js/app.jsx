@@ -19,72 +19,71 @@ var Configurator    = require('./Configurator.jsx'),
 
 var Preview = React.createClass({
   getInitialState: function() {
-    return {}
+    return {};
   },
   renderNode: function(tree, idx) {
-    if(typeof tree == "string") return tree
-    var props    = assign(tree.props, {key: tree.props.key || (tree.name || 'noname') + idx})
+    if(typeof tree == "string") return tree;
+    var props    = assign(tree.props, {key: tree.props.key || (tree.name || 'noname') + idx});
     var children = tree.children.map(function(x, y) {
-      return this.renderNode(x, y)
+      return this.renderNode(x, y);
     }, this)
-    return tree.elem(props, children)
+    return tree.elem(props, children);
   },
   render: function() {
     return <div className={!this.props.fullscreen && "previewer"}>
       {this.renderNode(this.props.tree, 0)}
-    </div>
+    </div>;
   }
 })
 
 
 var Reactor = React.createClass({
   getInitialState: function() {
-    return {tree: smartDefaults.starter, fullscreen: false, history: [smartDefaults.starter], currentHistory: 0}
+    return {tree: smartDefaults.starter, fullscreen: false, history: [smartDefaults.starter], currentHistory: 0};
   },
   componentDidMount: function() {
     document.addEventListener('keyup', function(e) {
       if(e.keyCode == 27)
-        this.setState({fullscreen: false})
-    }.bind(this))
+        this.setState({fullscreen: false});
+    }.bind(this));
   },
   onSelectNodeFromTree: function(path) {
-    this.setState({currentPath: path})
+    this.setState({currentPath: path});
   },
   onAddComponent: function(path) {
-    this.setState({dragging: false})
-    this.setState({currentPath: path})
+    this.setState({dragging: false});
+    this.setState({currentPath: path});
   },
   onUpdateTree: function(tree) {
-    this.setState({tree: tree, history: this.state.history.concat(tree), currentHistory: this.state.history.length})
+    this.setState({tree: tree, history: this.state.history.concat(tree), currentHistory: this.state.history.length});
   },
   currentProps: function() {
-    var path = this.state.currentPath
-    if(!path) return
-    return Immutable.fromJS(this.state.tree).getIn(path.concat('props')).delete('key').toJS()
+    var path = this.state.currentPath;
+    if(!path) return;
+    return Immutable.fromJS(this.state.tree).getIn(path.concat('props')).delete('key').toJS();
   },
   currentElem: function() {
-    var path = this.state.currentPath
-    if(!path) return
-    return Immutable.fromJS(this.state.tree).getIn(path.concat('elem')).type.propTypes
+    var path = this.state.currentPath;
+    if(!path) return;
+    return Immutable.fromJS(this.state.tree).getIn(path.concat('elem')).type.propTypes;
   },
   onChangeProps: function(k,v) {
-    var path = this.state.currentPath
+    var path = this.state.currentPath;
     var newTree = Immutable.fromJS(this.state.tree)
-                           .updateIn(path.concat(['props', k]), identity(v)).toJS()
-    this.setState({tree: newTree})
+                           .updateIn(path.concat(['props', k]), identity(v)).toJS();
+    this.setState({tree: newTree});
   },
   onDrag: function(component) {
-    this.setState({dragging: component})
+    this.setState({dragging: component});
   },
   onDragEnd: function() {
-    this.setState({dragging: false})
+    this.setState({dragging: false});
   },
   fullscreen: function() {
-    this.setState({fullscreen: true})
+    this.setState({fullscreen: true});
   },
   moveHistory: function(idx) {
-    console.log(idx)
-    this.setState({tree: this.state.history[idx], currentPath: undefined, currentHistory: idx})
+    this.setState({tree: this.state.history[idx], currentPath: undefined, currentHistory: idx});
   },
   render: function() {
     return <div className="container-fluid">
@@ -120,7 +119,7 @@ var Reactor = React.createClass({
             <Preview tree={this.state.tree} root={this.state.root} fullscreen={true}/>
           </Reveal>
         </Row>
-    </div>
+    </div>;
   }
 })
 

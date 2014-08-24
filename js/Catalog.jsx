@@ -5,15 +5,15 @@ var React     = require('react'),
 
 var Catalog = React.createClass({
   getInitialState: function() {
-    return {}
+    return {};
   },
   basics: ['div', 'span', 'h1', 'h2'],
   onSelect: function(k, v) {
-    var component = smartDefaults.smartAll(k) || {name: k, elem: v, props: {}, children: []}
-    this.props.onDrag(component)
+    var component = smartDefaults.smartAll(k) || {name: k, elem: v, props: {}, children: []};
+    this.props.onDrag(component);
   },
   regexFilter: function(k) {
-    return !this.state.filter || k.search(new RegExp(this.state.filter,'i')) > -1
+    return !this.state.filter || k.search(new RegExp(this.state.filter,'i')) > -1;
   },
   addCatalog: function(catalog, limit, filter) {
     return Object.keys(catalog)
@@ -28,10 +28,10 @@ var Catalog = React.createClass({
                               {k}
                             </li>
                          </Draggable>
-                }, this)
+                }, this);
   },
   filter: function(e) {
-    this.setState({filter: this.refs.filter.getValue()})
+    this.setState({filter: this.refs.filter.getValue()});
   },
   render: function() {
 
@@ -46,8 +46,8 @@ var Catalog = React.createClass({
         {this.addCatalog(React.DOM, 100, function(k, v) {return this.basics.indexOf(k) >= 0}.bind(this))}
         {this.addCatalog(Bootstrap, 100, function(k, v) {return typeof v == "function" && k !== 'Interpolate'})}
       </ul>
-    </div>
+    </div>;
   }
 })
 
-module.exports = Catalog
+module.exports = Catalog;

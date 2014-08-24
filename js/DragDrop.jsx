@@ -2,13 +2,13 @@ var React = require('react')
 
 var Draggable = React.createClass({
   getInitialState: function() {
-    return {}
+    return {};
   },
   onDragStart: function(e) {
     //e.preventDefault()
-    e.dataTransfer.effectAllowed = 'copy'
-    e.dataTransfer.dropEffect = 'copy'
-    this.props.onDragStart(e)
+    e.dataTransfer.effectAllowed = 'copy';
+    e.dataTransfer.dropEffect = 'copy';
+    this.props.onDragStart(e);
   },
 
   render: function() {
@@ -22,24 +22,24 @@ var Draggable = React.createClass({
 
 var Droppable = React.createClass({
   getInitialState: function() {
-    return {}
+    return {};
   },
   onDragOver: function(e) {
-    e.preventDefault()
+    e.preventDefault();
   },
   handleDragEnter: function(e) {
     e.target.classList.add('over');
   },
 
   handleDragLeave: function(e) {
-    e.preventDefault()
+    e.preventDefault();
     e.target.classList.remove('over');
   },
   handleDrop: function(e) {
-    e.preventDefault()
-    e.stopPropagation()
-    e.target.classList.remove('over')
-    this.props.onDrop(e)
+    e.preventDefault();
+    e.stopPropagation();
+    e.target.classList.remove('over');
+    this.props.onDrop(e);
   },
   render: function() {
     return React.addons.cloneWithProps(this.props.children, {
@@ -51,4 +51,4 @@ var Droppable = React.createClass({
   }
 })
 
-module.exports = {Draggable: Draggable, Droppable: Droppable}
+module.exports = {Draggable: Draggable, Droppable: Droppable};
