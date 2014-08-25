@@ -4,11 +4,12 @@ var React           = require('react'),
     ContentEditable = require('./ContentEditable.jsx'),
     TreeView        = require('react-treeview'),
     Reveal          = require('./Utils.jsx').Reveal,
+    _               = require('lodash'),
     Droppable       = require('./DragDrop.jsx').Droppable;
 
 var TreePreview = React.createClass({
   getInitialState: function() {
-    return {};
+    return {selected: null};
   },
   drop: function(cursor, e) {
     if(e.target.classList.contains('tree-view_children') || e.target.classList.contains('placeholder'))
@@ -54,7 +55,10 @@ var TreePreview = React.createClass({
     var tree = tree.toJS();
     var label = <Droppable onDrop={this.drop.bind(this, cursor)}>
                   <div className='remove-wrapper'>
-                    <strong onClick={this.selectNode.bind(this, path)}>{tree.name}</strong>
+                    <strong onClick={this.selectNode.bind(this, path)}
+                            style={{color: _.isEqual(path, this.props.selectedPath) ? 'green' : 'black'}}>
+                      {tree.name}
+                    </strong>
                     <Bootstrap.Glyphicon className='remove-tree' glyph='remove'/>
                   </div>
                 </Droppable>

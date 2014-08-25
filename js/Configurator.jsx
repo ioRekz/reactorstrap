@@ -77,7 +77,7 @@ var Configurator = React.createClass({
     //else uiProps = <span>Select a component in the tree</span>
     var currentHistory = this.props.currentHistory+1
     return <div>
-            <Bootstrap.Panel header="Configurator" bsStyle="success">
+            <Bootstrap.Panel header={"Configurator - "+this.props.currentName} bsStyle="success">
               <form>
                 <Reveal first={this.props.props != undefined}>
                   <div>

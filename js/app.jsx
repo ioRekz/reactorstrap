@@ -59,12 +59,20 @@ var Reactor = React.createClass({
   currentProps: function() {
     var path = this.state.currentPath;
     if(!path) return;
-    return Immutable.fromJS(this.state.tree).getIn(path.concat('props')).delete('key').toJS();
+    return this.currentData('props', path).delete('key').toJS();
   },
   currentElem: function() {
     var path = this.state.currentPath;
     if(!path) return;
-    return Immutable.fromJS(this.state.tree).getIn(path.concat('elem')).type.propTypes;
+    return this.currentData('elem', path).type.propTypes;
+  },
+  currentName: function() {
+    var path = this.state.currentPath;
+    if(!path) return;
+    return this.currentData('name', path);
+  },
+  currentData: function(sub, path) {
+    return Immutable.fromJS(this.state.tree).getIn(path.concat(sub));
   },
   onChangeProps: function(k,v) {
     var path = this.state.currentPath;
@@ -85,7 +93,6 @@ var Reactor = React.createClass({
     this.setState({tree: this.state.history[idx], currentPath: undefined, currentHistory: idx});
   },
   render: function() {
-    console.log(this.state.tree)
     return <div className="container-fluid">
         <Row>
           <Reveal first={!this.state.fullscreen}>
@@ -100,6 +107,7 @@ var Reactor = React.createClass({
                              changeText={this.onChangeText}
                              updateTree={this.onUpdateTree}
                              dragging={this.state.dragging}
+                             selectedPath={this.state.currentPath}
                              />
               </Col>
               <Col md={7}>
@@ -108,6 +116,7 @@ var Reactor = React.createClass({
               <Col md={2}>
                 <Configurator props={this.currentProps()}
                               pureProps={this.currentElem()}
+                              currentName={this.currentName()}
                               changeProps={this.onChangeProps}
                               fullscreen={this.fullscreen}
                               history={this.state.history}
