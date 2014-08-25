@@ -11,7 +11,7 @@ var gulp = require('gulp'),
     reactify = require('reactify'),
     streamify = require('gulp-streamify'),
     es6ify = require('es6ify'),
-    es6transpiler = require('gulp-es6-transpiler'),
+    //es6transpiler = require('gulp-es6-transpiler'),
     debowerify    = require('debowerify'),
     gulpif = require('gulp-if');
 

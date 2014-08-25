@@ -1,5 +1,4 @@
 var React           = require('react/addons'),
-    superagent      = require('superagent'),
     Immutable       = require('immutable'),
     Bootstrap       = require('react-bootstrap'),
     DOM             = React.DOM,
@@ -51,8 +50,8 @@ var Reactor = React.createClass({
     this.setState({currentPath: path});
   },
   onAddComponent: function(path) {
-    this.setState({dragging: false});
-    this.setState({currentPath: path});
+    console.log('path', path)
+    this.setState({dragging: false, currentPath: path});
   },
   onUpdateTree: function(tree) {
     this.setState({tree: tree, history: this.state.history.concat(tree), currentHistory: this.state.history.length});
@@ -86,6 +85,7 @@ var Reactor = React.createClass({
     this.setState({tree: this.state.history[idx], currentPath: undefined, currentHistory: idx});
   },
   render: function() {
+    console.log(this.state.tree)
     return <div className="container-fluid">
         <Row>
           <Reveal first={!this.state.fullscreen}>

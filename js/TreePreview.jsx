@@ -28,7 +28,8 @@ var TreePreview = React.createClass({
     this.props.addComponent(cursor._keyPath.concat('children').concat(newIdx));
   },
   replaceHere: function(cursor, e) {
-    cursor.update(function(compo) {
+    cursor.cursor([]).update(function(compo) {
+      console.log(compo)
       return this.props.dragging;
     }.bind(this));
     this.props.addComponent(cursor._keyPath);
@@ -50,7 +51,6 @@ var TreePreview = React.createClass({
       return  <ContentEditable key={path+'-span'} onChange={this.changeText.bind(this, cursor)} className='tree-text'>
                 {tree}
               </ContentEditable>
-
     var tree = tree.toJS();
     var label = <Droppable onDrop={this.drop.bind(this, cursor)}>
                   <div className='remove-wrapper'>

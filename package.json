@@ -29,13 +29,9 @@
     "watchify": "^1.0.0"
   },
   "dependencies": {
-    "fuzzy": "^0.1.0",
-    "immutable": "^2.0.10",
-    "lodash": "^2.4.1",
-    "mori": "^0.2.9",
+    "immutable": "2.0.11",
+    "react": "^0.11.1",
     "react-bootstrap": "0.11.1",
-    "react-treeview": "^0.3.5",
-    "react-typeahead": "git://github.com/fmoo/react-typeahead",
-    "superagent": "~0.18.2"
+    "react-treeview": "^0.3.5"
   }
 }

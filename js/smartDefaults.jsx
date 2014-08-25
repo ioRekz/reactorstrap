@@ -2,9 +2,8 @@ var Immutable  = require('immutable'),
     Bootstrap  = require('react-bootstrap'),
     DOM        = require('react').DOM,
     React      = require('react'),
-    utils           = require('./utils'),
-    assign   = utils.assign,
-    _          = require('lodash');
+    utils      = require('./utils'),
+    assign     = utils.assign;
 
 var ButtonGroup    = Bootstrap.ButtonGroup,
     Button         = Bootstrap.Button,
@@ -270,7 +269,7 @@ var defaultProps = function(elem) {
   return assign(Object.keys(elem.type.propTypes).reduce(function(total, prop) {
     var current = {};
     current[prop] = elem.type.defaultProps ? elem.type.defaultProps[prop] : undefined;
-    return _.assign(total, current);
+    return assign(total, current);
   }, {}), globals)
 };
 
