@@ -77,6 +77,8 @@ var Configurator = React.createClass({
     //else uiProps = <span>Select a component in the tree</span>
     var currentHistory = this.props.currentHistory+1
     var selection = this.props.currentName ?  " - " + this.props.currentName : ''
+              /*<Bootstrap.Button bsStyle='primary' onClick={this.props.saveApp} block={true}>Save App</Bootstrap.Button>
+              <Bootstrap.Button bsStyle='primary' onClick={this.props.loadApp} block={true}>Load App</Bootstrap.Button>*/
     return <div>
             <Bootstrap.Panel header={"Configurator"+selection} bsStyle="success">
               <form>

@@ -98,6 +98,14 @@ var Reactor = React.createClass({
   addEditing: function(id) {
     this.setState({editing: id})
   },
+  onSaveApp: function() {
+    window.localStorage.setItem('app', JSON.stringify(this.state.tree))
+  },
+  onLoadApp: function() {
+    var app = JSON.parse(window.localStorage.getItem('app'))
+    console.log(app.name)
+    this.setState({tree: app})
+  },
   render: function() {
     return <div className="container-fluid">
         <Row>
@@ -129,6 +137,8 @@ var Reactor = React.createClass({
                               history={this.state.history}
                               moveHistory={this.moveHistory}
                               currentHistory={this.state.currentHistory}
+                              saveApp={this.onSaveApp}
+                              loadApp={this.onLoadApp}
                               />
               </Col>
             </div>
