@@ -2,7 +2,7 @@ reactorstrap
 ============
 
 drag&amp;drop UI Kit for reactorstrap and theorically any other one.
-![Reactor](http://i58.tinypic.com/23u4s9g.png)
+![Reactor](http://i60.tinypic.com/2d6lemr.png)
 
 
 ## Implementation
