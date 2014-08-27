@@ -1,11 +1,8 @@
 reactorstrap
 ============
 
-drag&amp;drop UI Kit for reactorstrap and theorically any other one.
+drag&amp;drop UI Kit for reactorstrap and theorically any other one. [demo](http://youtu.be/EUHkYHIEPik)
 ![Reactor](http://i60.tinypic.com/2d6lemr.png)
-
-[demo](http://youtu.be/EUHkYHIEPik)
-
 
 ## Implementation
 There are 5 main components:
