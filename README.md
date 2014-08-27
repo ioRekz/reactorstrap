@@ -2,6 +2,8 @@ reactorstrap
 ============
 
 drag&amp;drop UI Kit for reactorstrap and theorically any other one.
+![Reactor](http://i58.tinypic.com/23u4s9g.png)
+
 
 ## Implementation
 There are 5 main components:
