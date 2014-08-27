@@ -29,10 +29,11 @@
     "watchify": "^1.0.0"
   },
   "dependencies": {
+    "entities": "^1.1.1",
     "immutable": "2.0.11",
     "lodash": "^2.4.1",
     "react": "^0.11.1",
     "react-bootstrap": "0.11.1",
-    "react-treeview": "^0.3.5"
+    "react-treeview": "0.3.4"
   }
 }

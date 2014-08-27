@@ -38,7 +38,9 @@ var Preview = React.createClass({
 
 var Reactor = React.createClass({
   getInitialState: function() {
-    return {tree: smartDefaults.starter, fullscreen: false, history: [smartDefaults.starter], currentHistory: 0};
+    return {tree: smartDefaults.starter, fullscreen: false,
+            history: [smartDefaults.starter], currentHistory: 0,
+            editing: null};
   },
   componentDidMount: function() {
     document.addEventListener('keyup', function(e) {
@@ -50,8 +52,8 @@ var Reactor = React.createClass({
     this.setState({currentPath: path});
   },
   onAddComponent: function(path) {
-    console.log('path', path)
-    this.setState({dragging: false, currentPath: path});
+    console.log(path)
+    this.setState({dragging: false, currentPath: path, editing: path.concat('children').concat(0)});
   },
   onUpdateTree: function(tree) {
     this.setState({tree: tree, history: this.state.history.concat(tree), currentHistory: this.state.history.length});
@@ -92,6 +94,9 @@ var Reactor = React.createClass({
   moveHistory: function(idx) {
     this.setState({tree: this.state.history[idx], currentPath: undefined, currentHistory: idx});
   },
+  addEditing: function(id) {
+    this.setState({editing: id})
+  },
   render: function() {
     return <div className="container-fluid">
         <Row>
@@ -104,10 +109,11 @@ var Reactor = React.createClass({
                 <TreePreview tree={this.state.tree}
                              addComponent={this.onAddComponent}
                              selectNode={this.onSelectNodeFromTree}
-                             changeText={this.onChangeText}
                              updateTree={this.onUpdateTree}
                              dragging={this.state.dragging}
                              selectedPath={this.state.currentPath}
+                             addEditing={this.addEditing}
+                             editing={this.state.editing}
                              />
               </Col>
               <Col md={7}>

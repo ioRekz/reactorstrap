@@ -46,10 +46,12 @@ var smarties = [
   <h2>h2</h2>,
   <div>simple div</div>,
   <span>span</span>,
+  <p>paragraph</p>,
+  <a href='link'>link</a>,
 
   <Button>Button</Button>,
 
-  <Alert bsStyle="warning">
+  <Alert bsStyle="info">
     Alert
   </Alert>,
 
@@ -132,7 +134,7 @@ var smarties = [
     <PageItem href="#">Next</PageItem>
   </Pager>,
 
-  <TabbedArea defaultActiveKey={2} >
+  <TabbedArea defaultActiveKey={1} bsStyle='tabs'>
     <TabPane key={1} tab="Tab 1">TabPane 1 content</TabPane>
     <TabPane key={2} tab="Tab 2">TabPane 2 content</TabPane>
   </TabbedArea>,
@@ -261,7 +263,8 @@ var smarties = [
 ];
 
 var globals = {
-  bsSize: 'medium'
+  bsSize: 'medium',
+  bsStyle: 'default'
 };
 
 var defaultProps = function(elem) {

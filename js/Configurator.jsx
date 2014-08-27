@@ -45,7 +45,7 @@ var Configurator = React.createClass({
     if(k == 'className') {
       err = false;
     } else {
-      if(!this.props.pureProps[k]) return;
+      if(!this.props.pureProps || !this.props.pureProps[k]) return;
       var validation = this.props.pureProps[k](against, k, "dummy");
       err = validation instanceof Error;
     }
@@ -69,15 +69,16 @@ var Configurator = React.createClass({
                                                 hasFeedback={false} value={v} checked={v}
                                                 onChange={this.newProps.bind(this, k)}>
 
-                                 {propData instanceof Array && propData.map(function(it) {
+                                 {propData instanceof Array && propData.sort().map(function(it) {
                                    return <option key={it} value={it}>{it}</option>
                                  }, this)}
                                </Bootstrap.Input>
                     }, this)
     //else uiProps = <span>Select a component in the tree</span>
     var currentHistory = this.props.currentHistory+1
+    var selection = this.props.currentName ?  " - " + this.props.currentName : ''
     return <div>
-            <Bootstrap.Panel header={"Configurator - "+this.props.currentName} bsStyle="success">
+            <Bootstrap.Panel header={"Configurator"+selection} bsStyle="success">
               <form>
                 <Reveal first={this.props.props != undefined}>
                   <div>

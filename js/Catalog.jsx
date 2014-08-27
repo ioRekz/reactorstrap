@@ -7,7 +7,7 @@ var Catalog = React.createClass({
   getInitialState: function() {
     return {};
   },
-  basics: ['div', 'span', 'h1', 'h2'],
+  basics: ['a', 'div', 'span', 'h1', 'h2', 'p'],
   onSelect: function(k, v) {
     var component = smartDefaults.smartAll(k) || {name: k, elem: v, props: {}, children: []};
     this.props.onDrag(component);
