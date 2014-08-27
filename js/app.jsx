@@ -52,8 +52,9 @@ var Reactor = React.createClass({
     this.setState({currentPath: path});
   },
   onAddComponent: function(path) {
-    console.log(path)
-    this.setState({dragging: false, currentPath: path, editing: path.concat('children').concat(0)});
+
+    this.setState({dragging: false, currentPath: path});
+    if(path) this.setState({editing: path.concat('children').concat(0)})
   },
   onUpdateTree: function(tree) {
     this.setState({tree: tree, history: this.state.history.concat(tree), currentHistory: this.state.history.length});
