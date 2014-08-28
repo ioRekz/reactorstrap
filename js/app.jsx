@@ -52,8 +52,9 @@ var Reactor = React.createClass({
     this.setState({currentPath: path});
   },
   onAddComponent: function(path) {
-    console.log(path)
-    this.setState({dragging: false, currentPath: path, editing: path.concat('children').concat(0)});
+
+    this.setState({dragging: false, currentPath: path});
+    if(path) this.setState({editing: path.concat('children').concat(0)})
   },
   onUpdateTree: function(tree) {
     this.setState({tree: tree, history: this.state.history.concat(tree), currentHistory: this.state.history.length});
@@ -97,6 +98,14 @@ var Reactor = React.createClass({
   addEditing: function(id) {
     this.setState({editing: id})
   },
+  onSaveApp: function() {
+    window.localStorage.setItem('app', JSON.stringify(this.state.tree))
+  },
+  onLoadApp: function() {
+    var app = JSON.parse(window.localStorage.getItem('app'))
+    console.log(app.name)
+    this.setState({tree: app})
+  },
   render: function() {
     return <div className="container-fluid">
         <Row>
@@ -128,6 +137,8 @@ var Reactor = React.createClass({
                               history={this.state.history}
                               moveHistory={this.moveHistory}
                               currentHistory={this.state.currentHistory}
+                              saveApp={this.onSaveApp}
+                              loadApp={this.onLoadApp}
                               />
               </Col>
             </div>

@@ -1,9 +1,8 @@
 reactorstrap
 ============
 
-drag&amp;drop UI Kit for reactorstrap and theorically any other one.
+drag&amp;drop UI Kit for reactorstrap and theorically any other one. [demo](http://youtu.be/EUHkYHIEPik)
 ![Reactor](http://i60.tinypic.com/2d6lemr.png)
-
 
 ## Implementation
 There are 5 main components:
@@ -15,8 +14,7 @@ There are 5 main components:
 `
 {name: 'div', elem: DOM.div, props: {}, children: ['Hi']}
 `
-  Manage the selected component in the tree for the configurator
-  Link the drag and drop features between the Catalog and the Tree
+  Manage the selected component in the tree for the configurator. Link the drag and drop features between the Catalog and the Tree.
 
 
 - **Catalog**: the component list on the left
@@ -41,9 +39,9 @@ There are 5 main components:
 
   It takes the selected component as props.
   We then inspect the object to find props.
-  We also fake render with bad props so we can guess the prop types from the message :/ and display revelant UI like checkbox for bools
-  We could use gcanti/tcomb-react-bootstrap to read prop types but it would only work for react bootstrap
+  We also fake render with bad props so we can guess the prop types from the message :/ and display revelant UI like checkbox for bools.
+  We could use gcanti/tcomb-react-bootstrap to read prop types but it would only work for react bootstrap.
 
 ## Libraries
 Use the new Facebook Immutable library with cursors for deep tree updaptes.
-That's a feature I missed from Om. It's not perfect but we can update deep in the tree quite elegantly
+That's a feature I missed from Om. We can update and render deep in the tree quite elegantly.
