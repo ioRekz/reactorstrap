@@ -37,7 +37,6 @@ var TreePreview = React.createClass({
     this.props.addComponent(cursor._keyPath);
   },
   removeNode: function(cursor, parent, e) {
-    console.log('remove', cursor)
     parent.cursor(['children']).update(function(children) {
       return children.delete(cursor._keyPath[cursor._keyPath.length-1]);
     }.bind(this));

@@ -16,6 +16,10 @@ var Configurator    = require('./Configurator.jsx'),
     assoc    = utils.assoc,
     identity = utils.identity;
 
+var findElem = function(name) {
+  return Bootstrap[name] || DOM[name];
+};
+
 var Preview = React.createClass({
   getInitialState: function() {
     return {};
@@ -26,7 +30,7 @@ var Preview = React.createClass({
     var children = tree.children.map(function(x, y) {
       return this.renderNode(x, y);
     }, this)
-    return tree.elem(props, children);
+    return findElem(tree.name)(props, children);
   },
   render: function() {
     return <div className={!this.props.fullscreen && "previewer"}>
@@ -67,7 +71,7 @@ var Reactor = React.createClass({
   currentElem: function() {
     var path = this.state.currentPath;
     if(!path) return;
-    return this.currentData('elem', path).type.propTypes;
+    return findElem(this.currentName()).type.propTypes;
   },
   currentName: function() {
     var path = this.state.currentPath;
@@ -98,12 +102,11 @@ var Reactor = React.createClass({
   addEditing: function(id) {
     this.setState({editing: id})
   },
-  onSaveApp: function() {
-    window.localStorage.setItem('app', JSON.stringify(this.state.tree))
+  onSaveApp: function(name) {
+    window.localStorage.setItem(name, JSON.stringify(this.state.tree))
   },
-  onLoadApp: function() {
-    var app = JSON.parse(window.localStorage.getItem('app'))
-    console.log(app.name)
+  onLoadApp: function(name) {
+    var app = JSON.parse(window.localStorage.getItem(name))
     this.setState({tree: app})
   },
   render: function() {

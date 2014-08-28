@@ -9,7 +9,7 @@ var Catalog = React.createClass({
   },
   basics: ['a', 'div', 'span', 'h1', 'h2', 'p'],
   onSelect: function(k, v) {
-    var component = smartDefaults.smartAll(k) || {name: k, elem: v, props: {}, children: []};
+    var component = smartDefaults.smartAll(k) || {name: k, props: {}, children: []};
     this.props.onDrag(component);
   },
   regexFilter: function(k) {
