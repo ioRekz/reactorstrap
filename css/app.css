@@ -8,6 +8,9 @@ body {
   margin-top: 20px;
 }
 
+.full-preview {
+  margin-top: 15px !important;
+}
 
 .remove-wrapper {
   display: inline-block;

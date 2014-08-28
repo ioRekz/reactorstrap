@@ -288,7 +288,7 @@ var parseDOM = function(elem, name) {
                                         : child ? [parseDOM(child)] : [];
   var name = name || elem.type.displayName;
   var props = Immutable.Map(elem._store.props).delete('children').toJS();
-  return {name: name, children: children, props: Immutable.Map(defaultProps(elem)).merge(props).toJS(), elem: findElem(name)};
+  return {name: name, children: children, props: Immutable.Map(defaultProps(elem)).merge(props).toJS()};
 }
 
 var smartDefaults = {
@@ -302,7 +302,7 @@ var smartDefaults = {
   },
   smartAll: function(k) {
     var elem = Immutable.Sequence(smarties).find(function(e) {
-      return e.name == k || e.type.displayName == k;
+      return e.name ? e.name == k : e.type.displayName == k;
     });
     return elem ? parseDOM(elem.elem || elem, elem.name) : undefined;
   },

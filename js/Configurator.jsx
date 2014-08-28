@@ -55,6 +55,14 @@ var Configurator = React.createClass({
   moveHistory: function(e) {
     this.props.moveHistory(parseInt(e.target.value));
   },
+  saveApp: function(e) {
+    e.preventDefault();
+    var name = e.target.elements.namedItem('save').value;
+    this.props.saveApp(name);
+  },
+  drafts: function() {
+    return Object.keys(window.localStorage)
+  },
   render: function() {
     var uiProps;
     if(this.props.props)
@@ -77,8 +85,6 @@ var Configurator = React.createClass({
     //else uiProps = <span>Select a component in the tree</span>
     var currentHistory = this.props.currentHistory+1
     var selection = this.props.currentName ?  " - " + this.props.currentName : ''
-              /*<Bootstrap.Button bsStyle='primary' onClick={this.props.saveApp} block={true}>Save App</Bootstrap.Button>
-              <Bootstrap.Button bsStyle='primary' onClick={this.props.loadApp} block={true}>Load App</Bootstrap.Button>*/
     return <div>
             <Bootstrap.Panel header={"Configurator"+selection} bsStyle="success">
               <form>
@@ -91,10 +97,19 @@ var Configurator = React.createClass({
               </form>
             </Bootstrap.Panel>
             <Bootstrap.Panel header="Tools" bsStyle="primary">
+              <form onSubmit={this.saveApp}>
               <Bootstrap.Input type='range' ref='history' label={'history '+'('+currentHistory+'/'+this.props.history.length+')'}
                                min={0} max={this.props.history.length-1} value={this.props.currentHistory}
                                onChange={this.moveHistory}/>
-              <Bootstrap.Button bsStyle='primary' onClick={this.props.fullscreen} block={true}>Full Preview (Esc to quit)</Bootstrap.Button>
+              <Bootstrap.Input type='text' name='save' placeholder='save draft as'/>
+              <Bootstrap.SplitButton bsStyle='default' title='Load Draft' onSelect={this.props.loadApp}>
+                {this.drafts().map(function(d) {
+                  return <Bootstrap.MenuItem key={d}>{d}</Bootstrap.MenuItem>
+                })}
+              </Bootstrap.SplitButton>
+
+              <Bootstrap.Button bsStyle='primary' className='full-preview' onClick={this.props.fullscreen} block={true}>Full Preview (Esc to quit)</Bootstrap.Button>
+              </form>
             </Bootstrap.Panel>
           </div>
   }
